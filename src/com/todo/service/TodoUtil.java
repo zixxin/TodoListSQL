@@ -1,13 +1,5 @@
 package com.todo.service;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.*;
 import com.todo.dao.TodoItem;
 import com.todo.dao.TodoList;
@@ -150,47 +142,4 @@ public class TodoUtil {
 		}
 		System.out.printf("\n총 %d개의 카테고리가 등록되어 있습니다.\n", count);
 	}
-	
-	/*
-	public static void saveList(TodoList l, String filename) {
-		try {
-			Writer w = new FileWriter(filename);
-			for (TodoItem item : l.getList()) {
-				w.write(item.toSaveString());
-			}
-			w.close();
-			System.out.println("\nTodoList를 " + filename + "에 저장 완료!");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void loadList(TodoList l, String filename) {
-		//BufferedReader, FileReader, StringTokenizer
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filename));
-			String oneline;
-			
-			while((oneline = br.readLine()) != null) {
-				StringTokenizer st = new StringTokenizer(oneline, "##");
-				String title = st.nextToken();
-				String category = st.nextToken();
-				String desc = st.nextToken();
-				String due_date = st.nextToken();
-				String current_date = st.nextToken();
-				
-				TodoItem t = new TodoItem(title, category, desc, due_date, current_date);
-				l.addItem(t);
-			}
-			br.close();
-			System.out.println(filename + "의 TodoList를 로딩 완료!");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	*/
 }

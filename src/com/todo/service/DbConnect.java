@@ -28,12 +28,4 @@ public class DbConnect {
 		}
 		return conn;
 	}
-	
-	public class TodoList{
-		Connection conn;
-		
-		public TodoList() {
-			this.conn = DbConnect.getConnection();
-		}
-	}
 }

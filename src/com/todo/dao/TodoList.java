@@ -2,6 +2,7 @@ package com.todo.dao;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +13,11 @@ import com.todo.service.TodoSortByName;
 
 public class TodoList {
 	private List<TodoItem> list;
+	Connection conn;
 
 	public TodoList() {
-		this.list = new ArrayList<TodoItem>();
+		this.conn = DbConnect.getConnection();
+		//this.list = new ArrayList<TodoItem>();
 	}
 
 	public int addItem(TodoItem t) {
@@ -42,7 +45,7 @@ public class TodoList {
 		int count = 0;
 		
 		try {
-			pstmt = conn.preparedStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,index);
 			count = pstmt.executeUpdate();
 			pstmt.close();
