@@ -29,7 +29,6 @@ public class TodoItem {
     }
     
     public int getId() {
-    	id++;
         return id;
     }
 

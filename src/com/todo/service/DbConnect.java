@@ -2,7 +2,9 @@ package com.todo.service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DbConnect {
 	public static Connection conn = null;
@@ -21,7 +23,8 @@ public class DbConnect {
 		if(conn == null) {
 			try {
 				Class.forName("org.sqlite.JDBC");
-				conn = DriverManager.getConnection("jdbc:sqlite:" + "todolist.db");
+				String dbFile = "todolist.db";
+				conn = DriverManager.getConnection("jdbc:sqlite:" + dbFile);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

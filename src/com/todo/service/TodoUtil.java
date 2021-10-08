@@ -123,6 +123,28 @@ public class TodoUtil {
 		System.out.println("\n총 "+count+"개의 항목이 검색됨");
 	}
 	
+	public static void listCate(TodoList l) {
+		Set<String> list =  new HashSet<>();
+		int count = 0;
+		
+		for (TodoItem item : l.getList()) {
+			String cate = item.getCategory();
+			list.add(cate);
+		}
+		
+		for (String item : list) {
+			if(count == 0) {
+				System.out.print(item);
+				count++;
+			}
+			else {
+				System.out.print(" / " + item);
+				count++;
+			}
+		}
+		System.out.printf("\n총 %d개의 항목이 존재합니다.\n", count);
+	}
+	
 	public static void findCateList(TodoList l, String cate) {
 		int count = 0;
 		

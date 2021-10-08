@@ -8,8 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+
 import com.todo.service.TodoSortByDate;
 import com.todo.service.TodoSortByName;
+import com.todo.service.DbConnect;
 
 public class TodoList {
 	private List<TodoItem> list;
@@ -17,7 +19,6 @@ public class TodoList {
 
 	public TodoList() {
 		this.conn = DbConnect.getConnection();
-		this.list = new ArrayList<TodoItem>();
 	}
 
 	public int addItem(TodoItem t) {
@@ -140,8 +141,7 @@ public class TodoList {
 		try {
 			stmt = conn.createStatement();
 			String sql = "SELECT * FROM list ORDER BY " + orderby;
-			if(ordering==0)
-				sql += " desc";
+			if(ordering==0) sql += " desc";
 			ResultSet rs = stmt.executeQuery(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
