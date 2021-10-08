@@ -17,7 +17,7 @@ public class TodoList {
 
 	public TodoList() {
 		this.conn = DbConnect.getConnection();
-		//this.list = new ArrayList<TodoItem>();
+		this.list = new ArrayList<TodoItem>();
 	}
 
 	public int addItem(TodoItem t) {
