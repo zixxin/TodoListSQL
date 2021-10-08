@@ -52,13 +52,13 @@ public class TodoList {
 		return count;
 	}
 
-	void editItem(TodoItem t) {
+	public int updateItem(TodoItem t) {
 		String sql = "update list set title=?, memo=?, category=?, current_date=?, due_date=?"
 				+ " where id = ?;";
 		PreparedStatement pstmt;
 		int count = 0;
 		try {
-			pstmt.getConnection().prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, t.getTitle());
 			pstmt.setString(2, t.getDesc());
 			pstmt.setString(3, t.getCategory());
@@ -67,14 +67,40 @@ public class TodoList {
 			pstmt.setInt(6, t.getId());
 			count = pstmt.executeUpdate();
 			pstmt.close();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return count;
 	}
-
+	
 	public ArrayList<TodoItem> getList() {
+		ArrayList<TodoItem> list = new ArrayList<TodoItem>();
+		Statement stmt;
+		
+		try {
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM list";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String category = rs.getString("category");
+				String title = rs.getString("title");
+				String description = rs.getString("description");
+				String due_date = rs.getString("due_date");
+				String current_date = rs.getString("current_date");
+				TodoItem t = new TodoItem(title, description, category, due_date);
+				t.setId(id);
+				t.setCurrent_date(current_date);
+				list.add(t);
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<TodoItem> getList(String keyword) {
 		ArrayList<TodoItem> list = new ArrayList<TodoItem>();
 		PreparedStatement pstmt;
 		keyword = "%"+keyword+"%";
@@ -97,7 +123,7 @@ public class TodoList {
 				t.setCurrent_date(current_date);
 				list.add(t);
 			}
-			stmt.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -134,7 +160,7 @@ public class TodoList {
 		return list;
 	}
 	
-	public ArrayList<TodoItem> getListCategory() {
+	public ArrayList<TodoItem> getListCategory(String keyword) {
 		ArrayList<TodoItem> list = new ArrayList<TodoItem>();
 		PreparedStatement pstmt;
 		

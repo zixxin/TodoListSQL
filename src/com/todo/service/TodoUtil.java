@@ -45,9 +45,6 @@ public class TodoUtil {
 	}
 
 	public static void deleteItem(TodoList l) {
-		int count = 0;
-		int num;
-		String whe;
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("[항목 삭제]\n"
@@ -60,7 +57,7 @@ public class TodoUtil {
 
 
 	public static void updateItem(TodoList l) {
-		int count = 0;
+		String new_title, new_desc, new_category, new_due_date;
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("[항목 삭제]\n"
@@ -68,20 +65,20 @@ public class TodoUtil {
 		int index = sc.nextInt();  
 
 		System.out.print("새 제목 입력 -> ");
-		String new_title = sc.next().trim();
+		new_title = sc.next().trim();
 		
 		System.out.print("새 카테고리 입력 -> ");
-		String new_category = sc.next();
+		new_category = sc.next();
 		
 		sc.nextLine();
 		
 		System.out.print("새 내용 입력 -> ");
-		String new_description = sc.nextLine().trim();
+		new_desc = sc.nextLine().trim();
 		
 		System.out.print("새 마감일자 입력 (yyyy/mm/dd) -> ");
-		String new_due_date = sc.next().trim();
+		new_due_date = sc.next().trim();
 		
-		TodoItem t = new TodoItem(new_title, new_category, new_description, new_due_date);
+		TodoItem t = new TodoItem(new_title, new_desc, new_category, new_due_date);
 		t.setId(index);
 		if(l.updateItem(t)>0) 
 			System.out.println("[항목 수정 완료]");
@@ -154,6 +151,7 @@ public class TodoUtil {
 		System.out.printf("\n총 %d개의 카테고리가 등록되어 있습니다.\n", count);
 	}
 	
+	/*
 	public static void saveList(TodoList l, String filename) {
 		try {
 			Writer w = new FileWriter(filename);
@@ -194,4 +192,5 @@ public class TodoUtil {
 			e.printStackTrace();
 		}
 	}
+	*/
 }
