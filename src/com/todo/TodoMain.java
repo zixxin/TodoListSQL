@@ -14,7 +14,6 @@ public class TodoMain {
 		l.importData("todolist.txt");
 		boolean isList = false;
 		boolean quit = false;
-		TodoUtil.loadList(l, "todolist.txt");
 		
 		Menu.displaymenu();
 		do {
@@ -47,7 +46,6 @@ public class TodoMain {
 				
 			case "ls":
 				TodoUtil.listAll(l);
-				TodoUtil.saveList(l, "todolist.txt");
 				break;
 
 			case "ls_name":
@@ -90,6 +88,5 @@ public class TodoMain {
 			
 			if(isList) TodoUtil.listAll(l);
 		} while (!quit);
-		TodoUtil.saveList(l, "todolist.txt");
 	}
 }
