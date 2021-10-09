@@ -291,6 +291,7 @@ public class TodoList {
 		return list.indexOf(t);
 	}
 	
+	/*
 	public void importData(String filename) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -323,4 +324,5 @@ public class TodoList {
 			e.printStackTrace();
 		}
 	}
+	*/
 }
