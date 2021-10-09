@@ -82,7 +82,7 @@ public class TodoMain {
 			case "ls_comp":
 				TodoUtil.completeList(l);
 				break;
-				
+
 			case "help":
 				Menu.displaymenu();
 				break; 

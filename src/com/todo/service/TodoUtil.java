@@ -82,7 +82,7 @@ public class TodoUtil {
 		if(l.updateItem(t)>0) 
 			System.out.println("[항목 수정 완료]");
 	}
-	
+
 	public static void completeItem(TodoList l, int id) {
 		if(l.completeItem(id)) {
 			System.out.println("[수행 완료]로 변경 완료");
@@ -101,7 +101,7 @@ public class TodoUtil {
 		}
 		System.out.printf("\n%d개의 항목을 찾았습니다.\n", count);	
 	}
-	
+
 	public static void findList(TodoList l, String keyword) {
 		int count = 0;
 		

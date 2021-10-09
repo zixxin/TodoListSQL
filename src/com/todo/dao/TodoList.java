@@ -15,7 +15,7 @@ import com.todo.service.DbConnect;
 
 public class TodoList {
 	private List<TodoItem> list;
-	private Connection conn;
+	Connection conn;
 
 	public TodoList() {
 		this.conn = DbConnect.getConnection();
@@ -96,12 +96,14 @@ public class TodoList {
 				TodoItem t = new TodoItem(title, description, category, due_date);
 				t.setId(id);
 				t.setCurrent_date(current_date);
+
 				if (rs.getInt("is_completed") == 1) {
 					t.setIsCompleted(1);
 				}
 				else {
 					t.setIsCompleted(0);
 				}
+
 				list.add(t);
 			}
 			stmt.close();
@@ -241,7 +243,7 @@ public class TodoList {
 		}
 		return false;
 	}
-	
+
 	public boolean completeItem(int id) {
 		String sql = "update list set is_completed=1 where id = " + id;
 		Statement stmt;
@@ -291,12 +293,11 @@ public class TodoList {
 		return list.indexOf(t);
 	}
 	
-	/*
 	public void importData(String filename) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			String line;
-			String sql = "insert into list (title, memo, category, current_date, due_date)"
+			String sql = "insert into list (title, memo, category, current_date, due_date, is_completed)"
 					+ " values (?, ?, ?, ?, ?);";
 			
 			int records = 0;
@@ -324,5 +325,4 @@ public class TodoList {
 			e.printStackTrace();
 		}
 	}
-	*/
 }
