@@ -4,19 +4,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TodoItem {
-	private int id = 0;
+	private int id;
     private String title;
     private String desc;
     private String current_date;
     private String category;
     private String due_date;
+    private int is_completed;
 
     public TodoItem(String title, String category, String desc, String due_date){
         this.title = title;
         this.category = category;
         this.desc = desc;
         this.due_date = due_date;
-        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");
+        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
         this.current_date = f.format(new Date());
     }
     
@@ -25,7 +26,8 @@ public class TodoItem {
         this.category = category;
         this.desc = desc;
         this.due_date = due_date;
-        this.current_date = current_date;
+        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+        this.current_date = f.format(new Date());
     }
     
     public int getId() {
@@ -76,8 +78,17 @@ public class TodoItem {
         this.current_date = current_date;
     }
     
+    public int getIsCompleted() {
+		return is_completed;
+	}
+    
+    public void setIsCompleted(int num) {
+		this.is_completed = num;
+	}
+    
     public String toString() {
-    	return "[" + category + "] " + title + " - " + desc + " - " + due_date + " - " + current_date;
+    	if(is_completed == 0) return "[" + category + "] " + title + " - " + desc + " - " + due_date + " - " + current_date;
+    	else return  "[V] [" + category + "] " + title + " - " + desc + " - " + due_date + " - " + current_date;
     }
     
     public String toSaveString() {

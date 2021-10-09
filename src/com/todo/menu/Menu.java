@@ -1,8 +1,8 @@
 package com.todo.menu;
+
 public class Menu {
 
-    public static void displaymenu()
-    {
+    public static void displaymenu(){
         System.out.println();
         System.out.println("< ToDoList 관리 명령어 사용법 >");
         System.out.println("[add] 항목 추가");
@@ -16,6 +16,8 @@ public class Menu {
         System.out.println("[ls_date] 날짜순 정렬");
         System.out.println("[ls_date_desc] 날짜역순 정렬");
         System.out.println("[ls_cate] 카테고리 목록 출력");
+        System.out.println("[comp] 수행완료 여부 변경");
+        System.out.println("[ls_comp] 수행완료 항목 출력");
         System.out.println("[exit] 종료");
     }
    

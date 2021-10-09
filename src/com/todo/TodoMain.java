@@ -14,6 +14,7 @@ public class TodoMain {
 		l.importData("todolist.txt");
 		boolean isList = false;
 		boolean quit = false;
+		TodoUtil.loadList(l, "todolist.txt");
 		
 		Menu.displaymenu();
 		do {
@@ -72,6 +73,17 @@ public class TodoMain {
 				TodoUtil.listCateAll(l);
 				break;
 				
+			case "comp":
+				System.out.println("[수행 완료] 체크할 항목의 ID 입력 > ");
+				int id = sc.nextInt();
+				TodoUtil.completeItem(l, id);
+				sc.nextLine();
+				break;
+				
+			case "ls_comp":
+				TodoUtil.completeList(l);
+				break;
+				
 			case "help":
 				Menu.displaymenu();
 				break; 
@@ -88,6 +100,6 @@ public class TodoMain {
 			
 			if(isList) TodoUtil.listAll(l);
 		} while (!quit);
-		//TodoUtil.saveList(l, "todolist.txt");
+		TodoUtil.saveList(l, "todolist.txt");
 	}
 }
